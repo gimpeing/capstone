@@ -87,7 +87,7 @@ Prior to modelling the **CWT features**, **PCA** (Principal Components Analysis)
 **Metrics**
 - Precision, f1, and accuracy scores. 
 
-**Precision** provides the *positive predictive value, the proportion of samples that belong in category $a$ that are correctly placed in category $a$*. In the context of this project, among all predicted murmur heartbeat for example, how many did I predict correctly? High precision is with low FP (predict to be murmur but actually is not).
+**Precision** provides the *positive predictive value, the proportion of samples that belong in category `a` that are correctly placed in category `a`*. In the context of this project, among all predicted murmur heartbeat for example, how many did I predict correctly? High precision is with low FP (predict to be murmur but actually is not).
 
 **f1** is **weighted average for precision and recall**. This score takes both FN and FP into account. It is more useful than accuracy in this project, particularly dataset is with uneven class distribution.
 
