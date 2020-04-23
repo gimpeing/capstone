@@ -41,7 +41,7 @@ The following sections are supported by the respective numbered of Jupyter Noteb
 |Dataset|Number of Categories|Categories|Sources|Recorded by|
 |---|---|---|---|---|
 |A|4|Normal, Murmur, Extra Heart Sound, Artifact|general public|iStethoscope Pro iPhone app|
-|B|3|Normal, Murmur, Extrsystole|clinic trial in hospitals|digital stethoscope|
+|B|3|Normal, Murmur, Extrasystole|clinic trial in hospitals|digital stethoscope|
 
 - audio files are in varying lengths, between 1 second and 30 seconds. 
 - total of 5 categories and the categories distributions are as follows:
@@ -57,8 +57,8 @@ The following sections are supported by the respective numbered of Jupyter Noteb
 
 ## Data Preprocessing and Feature Extraction
 - First step is to denoise audio signal by using **Discrete Wavelet Transform** (DWT). Wavelet family used is '**Daubechies**’, subcategories of 'db6' and level 10.
-- Next step is to perform **imbalance class** treatment in 2 steps: **Systhesizes new samples** and **Oversampling** minority class.
-- Finally is to extract the audio features to train the classification model. 
+- Next step is to perform **imbalance class** treatment on TRAIN data after **train/test split** in 2 steps: **Systhesizes new samples** and **Oversampling** minority class.
+- Finally step is to extract the audio features to train the classification model. 
 - First feature is **MFCC**, which is a popular techniques to extract feature from raw audio data. **20 cepstral coefficients** are extracted.
 - The second feature is **CWT**, where it transform 1D signal into 2D time-scale representation of the signal in the form of a scaleogram. **Shannon wavelets** ('shan1.5-1.0') is chosen to perform the transformation.
 
@@ -94,7 +94,7 @@ Prior to modelling the **CWT features**, **PCA** (Principal Components Analysis)
 On top of that, Youden's Index, F-score of problematic heartbeats, and Discriminant Power of problematic heartbeats are used to evaluate the efficiency of the classifier model on the unlabel dataset, using the 'locked' excelsheet provided by kaggle.
 
 ### Results
-Among the three approaches, **CWT + CNN** with imbalance class treatment perform the best. It is also having more consistence results performance in classifying the unseen data (TEST set, unlabel set_a and set_b). In addition, it perform better compared to a reference from a technical paper using the SAME datasets (unlabel set_a nad set_b).
+Among the three approaches, **CWT + CNN** with imbalance class treatment perform the best. Though the accuracy is about **59%**, which at a glance, worst than the baseline accuracy. However, accuracy is not a good metric to acces efficiency of this imbalance multi-class classifier. The **CWT + CNN** achieves **80%** precision in detecting murmur, **73%** precision in detecting normal,and **20%** precision in detecting extra heart sound. It is also having more consistence results performance in classifying the unseen data (unlabel set_a and set_b). In addition, it perform better compared to a reference from a technical paper using the SAME datasets (unlabel set_a nad set_b).
 
 However, the model's efficiency in classifying normal and various non-normal heartbeat sounds still need to further improve as the precision, f1 scores for some of the heatbeat category is still low. 
 
